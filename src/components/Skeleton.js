@@ -20,6 +20,7 @@ const Loader = ({ page }) => {
                 alignItems: "baseline",
                 justifyContent: "left",
                 marginTop: "15px",
+                marginLeft: "15px",
               }}
             />
             <Skeleton

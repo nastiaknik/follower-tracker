@@ -21,18 +21,20 @@ function CardList() {
   const isLoading = useSelector(selectIsLoading);
   console.log(users.length, "/", totalUsersCount);
 
+  const limit = window.innerWidth < 768 ? 3 : 6;
+
   useEffect(() => {
     const controller = new AbortController();
-    dispatch(fetchUsersByPage({ page: 1, limit: 6 }, controller.signal)).catch(
+    dispatch(fetchUsersByPage({ page: 1, limit }, controller.signal)).catch(
       (err) => {
         console.error(err);
       }
     );
     return () => controller.abort();
-  }, [dispatch, filter]);
+  }, [dispatch, filter, limit]);
 
   const handleLoadMore = () => {
-    dispatch(fetchUsersByPage({ page: page + 1, limit: 6 }))
+    dispatch(fetchUsersByPage({ page: page + 1, limit }))
       .then((response) => {
         setPage(page + 1);
       })
@@ -49,7 +51,7 @@ function CardList() {
         ))}
       </List>
       {isLoading && <Loader page="/cards" />}
-      {totalUsersCount !== users?.length && (
+      {users && totalUsersCount !== users?.length && (
         <Button
           text="Load more"
           onClick={handleLoadMore}

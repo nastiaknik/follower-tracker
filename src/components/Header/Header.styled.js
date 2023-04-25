@@ -19,7 +19,6 @@ export const StyledHeader = styled.header`
   background-color: #56a68d;
   color: #fff;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
-  /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); */
   z-index: 999;
 `;
 

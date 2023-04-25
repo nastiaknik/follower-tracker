@@ -21,6 +21,10 @@ export const StyledArrowIcon = styled(IoMdArrowBack)`
 export const StyledNavLink = styled(NavLink)`
   text-align: start;
   margin: 0;
+
+  @media screen and (min-width: 1200px) {
+    margin-left: 15px;
+  }
 `;
 
 export const Title = styled.h3`
@@ -28,6 +32,10 @@ export const Title = styled.h3`
   text-align: center;
   padding: 0;
   /*  margin: 0 auto; */
+
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -37,4 +45,8 @@ export const Wrapper = styled.div`
   margin-top: 30px;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 1199px) {
+    margin: 20px 20px 0;
+  }
 `;

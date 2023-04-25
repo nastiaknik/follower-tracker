@@ -54,6 +54,11 @@ export const Avatar = styled.img`
   border-radius: 50%;
   overflow: hidden;
   background-color: rgb(235, 216, 255);
+
+  @media (min-width: 768px) {
+    width: 62px;
+    height: 62px;
+  }
 `;
 
 export const ImageContainer = styled.div`
