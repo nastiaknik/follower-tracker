@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
 
 const Home = lazy(() => import("./pages/Home"));
-const Tweets = lazy(() => import("./pages/Tweets"));
+const Tweets = lazy(() => import("./pages/Tweets/Tweets"));
 /* const NotFound = lazy(() => import('pages/NotFound/NotFound')); */
 
 function App() {

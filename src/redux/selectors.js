@@ -1,4 +1,4 @@
-/* import { createSelector } from "@reduxjs/toolkit"; */
+import { createSelector } from "@reduxjs/toolkit";
 
 export const selectUsers = (state) => state.users.items;
 
@@ -10,9 +10,25 @@ export const selectFollowingUsers = (state) =>
 export const selectNotFollowingUsers = (state) =>
   state.users.items?.filter((user) => !user.isFollowing);
 
-/* export const selectFilterValue = state => state.filter; */
+export const selectFilterValue = (state) => state.filters;
 
-/* export const selectFilteredUsers = createSelector(
+export const selectFilteredUsers = createSelector(
+  [selectUsers, selectFilterValue],
+  (users, filterValue) => {
+    switch (filterValue) {
+      case "all":
+        return users;
+      case "followed":
+        return users.filter((user) => user.isFollowing);
+      case "notFollowed":
+        return users.filter((user) => !user.isFollowing);
+      default:
+        return;
+    }
+  }
+);
+
+/* export const selectFilteredAllUsers = createSelector(
   [selectUsers, selectFilterValue],
   (users, filterValue) => {
     return users.filter(user => {

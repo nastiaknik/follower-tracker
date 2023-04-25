@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllUsers, fetchUsersByPage } from "../../redux/operations";
-import { selectUsers, selectUsersCount } from "../../redux/selectors";
+import { fetchUsersByPage } from "../../redux/operations";
+import {
+  selectFilteredUsers,
+  selectUsersCount,
+  selectFilterValue,
+} from "../../redux/selectors";
 import TweetCard from "../TweetCard/TweetCard";
 import { Button } from "components/Button/Button";
 import { List, Container } from "./CardList.styled";
@@ -9,30 +13,21 @@ import { List, Container } from "./CardList.styled";
 function CardList() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  const users = useSelector(selectUsers);
+  const users = useSelector(selectFilteredUsers);
   const totalUsersCount = useSelector(selectUsersCount);
+  const filter = useSelector(selectFilterValue);
+
+  console.log(users.length, "/", totalUsersCount);
 
   useEffect(() => {
     const controller = new AbortController();
-    dispatch(fetchAllUsers(controller.signal)).catch((err) => {
-      console.error(err);
-    });
-    return () => controller.abort();
-  }, [dispatch, page]);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    dispatch(fetchUsersByPage({ page: 1, limit: 6 }, controller.signal))
-      .then((response) => {
-        if (response.length === 0) {
-          console.log("No users found");
-        }
-      })
-      .catch((err) => {
+    dispatch(fetchUsersByPage({ page: 1, limit: 6 }, controller.signal)).catch(
+      (err) => {
         console.error(err);
-      });
+      }
+    );
     return () => controller.abort();
-  }, [dispatch]);
+  }, [dispatch, filter]);
 
   const handleLoadMore = () => {
     dispatch(fetchUsersByPage({ page: page + 1, limit: 6 }))

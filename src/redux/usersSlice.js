@@ -1,5 +1,9 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchAllUsers, fetchUsersByPage, toggleFollow } from "./operations";
+import {
+  fetchFilteredUsers,
+  fetchUsersByPage,
+  toggleFollow,
+} from "./operations";
 
 const usersInitialState = {
   items: [],
@@ -36,7 +40,7 @@ const usersSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(fetchAllUsers.fulfilled, (state, action) => {
+      .addCase(fetchFilteredUsers.fulfilled, (state, action) => {
         return {
           items: state.items,
           userCount: action.payload.length,
@@ -48,7 +52,7 @@ const usersSlice = createSlice({
         isAnyOf(
           toggleFollow.pending,
           fetchUsersByPage.pending,
-          fetchAllUsers.pending
+          fetchFilteredUsers.pending
         ),
         (state) => {
           state.isLoading = true;
@@ -58,7 +62,7 @@ const usersSlice = createSlice({
         isAnyOf(
           toggleFollow.rejected,
           fetchUsersByPage.rejected,
-          fetchAllUsers.rejected
+          fetchFilteredUsers.rejected
         ),
         (state, action) => {
           state.isLoading = false;

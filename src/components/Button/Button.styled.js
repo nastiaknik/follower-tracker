@@ -31,11 +31,11 @@ export const StyledButton = styled.button`
   :hover,
   :focus {
     background-color: ${(props) =>
-      props.text === "Load more" ? "#d7a51d" : "rgb(86, 166, 141);"};
+      props.text === "Load more" ? "#e7bb44" : "rgb(86, 166, 141);"};
   }
 
   :active {
     background-color: ${(props) =>
-      props.text === "Load more" ? "#d7a51d" : "rgb(86, 166, 141);"};
+      props.text === "Load more" ? "#e7bb44" : "rgb(86, 166, 141);"};
   }
 `;

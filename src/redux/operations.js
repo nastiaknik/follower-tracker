@@ -5,14 +5,23 @@ const agent = axios.create({
   baseURL: "https://64459f4f0431e885f0015baa.mockapi.io",
 });
 
-export const fetchAllUsers = createAsyncThunk(
-  "users/fetchAllUsers",
-  async (signal, { rejectWithValue }) => {
+export const fetchFilteredUsers = createAsyncThunk(
+  "users/fetchFilteredUsers",
+  async ({ filter, signal }, { rejectWithValue }) => {
     try {
       const response = await agent.get("/users", {
         signal,
       });
-      return response.data;
+      switch (filter) {
+        case "all":
+          return response.data;
+        case "followed":
+          return response.data.filter((user) => user.isFollowing);
+        case "notFollowed":
+          return response.data.filter((user) => !user.isFollowing);
+        default:
+          return;
+      }
     } catch (error) {
       return rejectWithValue(error.message);
     }
