@@ -56,19 +56,6 @@ export const Avatar = styled.img`
   background-color: rgb(235, 216, 255);
 `;
 
-/* export const Border = styled.div`
-  position: relative;
-  width: 80px;
-  height: 80px;
-  margin: 0 auto;
-  background-color: #ebd8ff;
-  box-shadow: rgba(0, 0, 0, 0.06) 0px 4.39163px 4.39163px,
-    rgb(174, 123, 227) 0px -2.19582px 4.39163px inset,
-    rgb(251, 248, 255) 0px 4.39163px 3.29372px inset;
-  border-radius: 50%;
-  z-index: 1;
-`; */
-
 export const ImageContainer = styled.div`
   position: relative;
   width: 80px;

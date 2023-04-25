@@ -5,7 +5,9 @@ import {
   selectFilteredUsers,
   selectUsersCount,
   selectFilterValue,
+  selectIsLoading,
 } from "../../redux/selectors";
+import Loader from "components/Skeleton";
 import TweetCard from "../TweetCard/TweetCard";
 import { Button } from "components/Button/Button";
 import { List, Container } from "./CardList.styled";
@@ -16,7 +18,7 @@ function CardList() {
   const users = useSelector(selectFilteredUsers);
   const totalUsersCount = useSelector(selectUsersCount);
   const filter = useSelector(selectFilterValue);
-
+  const isLoading = useSelector(selectIsLoading);
   console.log(users.length, "/", totalUsersCount);
 
   useEffect(() => {
@@ -46,6 +48,7 @@ function CardList() {
           <TweetCard key={user.id} user={user} />
         ))}
       </List>
+      {isLoading && <Loader page="/cards" />}
       {totalUsersCount !== users?.length && (
         <Button
           text="Load more"

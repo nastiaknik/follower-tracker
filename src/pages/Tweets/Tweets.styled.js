@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-
 import { IoMdArrowBack } from "react-icons/io";
 
 export const StyledArrowIcon = styled(IoMdArrowBack)`
