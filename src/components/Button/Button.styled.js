@@ -33,9 +33,4 @@ export const StyledButton = styled.button`
     background-color: ${(props) =>
       props.text === "Load more" ? "#e7bb44" : "rgb(86, 166, 141);"};
   }
-
-  :active {
-    background-color: ${(props) =>
-      props.text === "Load more" ? "#e7bb44" : "rgb(86, 166, 141);"};
-  }
 `;

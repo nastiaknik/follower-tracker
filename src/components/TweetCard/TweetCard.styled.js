@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 import logoGoIT from "../../assets/logoGoIT.png";
 import backgroundImagex1 from "../../assets/background-image-x1.png";
 import backgroundImagex2 from "../../assets/background-image-x2.png";
@@ -69,6 +70,7 @@ export const Avatar = styled.img`
   border-radius: 50%;
   overflow: hidden;
   background-color: rgb(235, 216, 255);
+  cursor: pointer;
 
   @media (min-width: 768px) {
     width: 62px;
@@ -107,4 +109,8 @@ export const StyledText = styled.p`
   color: rgba(235, 216, 255, 1);
   text-transform: uppercase;
   margin: 0;
+`;
+
+export const StyledLink = styled(NavLink)`
+  text-decoration: none;
 `;

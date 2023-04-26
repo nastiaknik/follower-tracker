@@ -56,3 +56,72 @@ export const toggleFollow = createAsyncThunk(
     }
   }
 );
+
+export const getUserById = createAsyncThunk(
+  "users/getUserById",
+  async (id, { rejectWithValue }) => {
+    try {
+      console.log(id);
+      const response = await agent.get(`users/${id}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getUserWithMostTweets = createAsyncThunk(
+  "users/searchUserWithMostTweets",
+  async (users, { rejectWithValue }) => {
+    try {
+      let userWithMostTweets;
+      let maxTweets = 0;
+
+      users.forEach((user) => {
+        if (user.tweets > maxTweets) {
+          maxTweets = user.tweets;
+          userWithMostTweets = user;
+        }
+      });
+
+      return userWithMostTweets;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getUserWithMostFollowers = createAsyncThunk(
+  "users/searchUserWithMostFollowers",
+  async (users, { rejectWithValue }) => {
+    try {
+      let userWithMostFollowers;
+      let maxFollowers = 0;
+
+      users.forEach((user) => {
+        if (user.followers > maxFollowers) {
+          maxFollowers = user.followers;
+          userWithMostFollowers = user;
+        }
+      });
+
+      return userWithMostFollowers;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getAllUsers = createAsyncThunk(
+  "users/fetchAllUsers",
+  async ({ signal }, { rejectWithValue }) => {
+    try {
+      const response = await agent.get("/users", {
+        signal,
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

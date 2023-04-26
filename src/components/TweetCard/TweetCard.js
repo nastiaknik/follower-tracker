@@ -1,6 +1,7 @@
 import { NumericFormat } from "react-number-format";
 import { useDispatch } from "react-redux";
 import { toggleFollow } from "redux/operations";
+import { useLocation } from "react-router-dom";
 import { Button } from "components/Button/Button";
 import {
   Card,
@@ -8,13 +9,15 @@ import {
   Info,
   StyledText,
   ImageContainer,
+  StyledLink,
 } from "./TweetCard.styled";
 
 function TweetCard({ user }) {
-  const dispatcher = useDispatch();
+  const location = useLocation();
+  const dispatch = useDispatch();
 
   const handleFollowClick = () => {
-    dispatcher(
+    dispatch(
       toggleFollow({
         ...user,
         isFollowing: !user.isFollowing,
@@ -26,7 +29,9 @@ function TweetCard({ user }) {
   return (
     <Card>
       <ImageContainer>
-        <Avatar src={user.avatar} alt={user.name} />
+        <StyledLink to={`/tweets/${user.id}`} state={{ from: location }}>
+          <Avatar src={user.avatar} alt={user.name} />
+        </StyledLink>
       </ImageContainer>
 
       <Info>
@@ -35,8 +40,8 @@ function TweetCard({ user }) {
             value={user.tweets}
             displayType={"text"}
             thousandSeparator={true}
-          />{" "}
-          tweets
+          />
+          {user.tweets === 1 ? " tweet" : " tweets"}
         </StyledText>
         <StyledText>
           <NumericFormat
@@ -44,7 +49,7 @@ function TweetCard({ user }) {
             displayType={"text"}
             thousandSeparator={true}
           />{" "}
-          followers
+          {user.tweets === 1 ? "follower" : "followers"}
         </StyledText>
 
         <Button

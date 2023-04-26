@@ -28,36 +28,22 @@ export const selectFilteredUsers = createSelector(
   }
 );
 
+export const selectSeletedUser = (state) => state.users.selectedUser;
+
+export const selectUserWithMostTweets = (state) =>
+  state.users.userWithMostTweets;
+
+export const selectUserWithMostFollowers = (state) =>
+  state.users.userWithMostFollowers;
+
+export const selectAllUsers = (state) => state.users.allUsers;
+
 /* export const selectFilteredAllUsers = createSelector(
   [selectUsers, selectFilterValue],
   (users, filterValue) => {
     return users.filter(user => {
       return (
         user.name.toLowerCase().includes(filterValue.toLowerCase().trim()) ||
-        user.nickname.includes(filterValue.toLowerCase().trim())
-      );
-    });
-  }
-); */
-
-/* export const selectFilteredFollowingUsers = createSelector(
-  [selectFollowingUsers, selectFilterValue],
-  (following, filterValue) => {
-    return following.filter(user => {
-      return (
-        user.name.includes(filterValue.toLowerCase().trim()) ||
-        user.nickname.includes(filterValue.toLowerCase().trim())
-      );
-    });
-  }
-); */
-
-/* export const selectFilteredNotFollowingUsers = createSelector(
-  [selectNotFollowingUsers, selectFilterValue],
-  (notFollowing, filterValue) => {
-    return notFollowing.filter(user => {
-      return (
-        user.name.includes(filterValue.toLowerCase().trim()) ||
         user.nickname.includes(filterValue.toLowerCase().trim())
       );
     });

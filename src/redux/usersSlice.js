@@ -3,6 +3,10 @@ import {
   fetchFilteredUsers,
   fetchUsersByPage,
   toggleFollow,
+  getUserById,
+  getUserWithMostFollowers,
+  getUserWithMostTweets,
+  getAllUsers,
 } from "./operations";
 
 const usersInitialState = {
@@ -10,6 +14,10 @@ const usersInitialState = {
   isLoading: false,
   error: null,
   userCount: 0,
+  selectedUser: null,
+  userWithMostFollowers: null,
+  userWithMostTweets: null,
+  allUsers: [],
 };
 
 const usersSlice = createSlice({
@@ -23,6 +31,7 @@ const usersSlice = createSlice({
           (user) => !existingUsers.includes(user.id)
         );
         return {
+          ...state,
           items:
             state.items?.length !== 0
               ? [...state.items, ...users]
@@ -42,17 +51,51 @@ const usersSlice = createSlice({
       })
       .addCase(fetchFilteredUsers.fulfilled, (state, action) => {
         return {
+          ...state,
           items: state.items,
           userCount: action.payload.length,
           isLoading: false,
           error: null,
         };
       })
+      .addCase(getUserById.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.selectedUser = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getUserWithMostTweets.fulfilled, (state, action) => {
+        const user = action.payload;
+        return {
+          ...state,
+          selectedUser: user,
+          isLoading: false,
+          error: null,
+          userWithMostTweets: action.payload,
+        };
+      })
+      .addCase(getUserWithMostFollowers.fulfilled, (state, action) => {
+        const user = action.payload;
+        return {
+          ...state,
+          selectedUser: user,
+          isLoading: false,
+          error: null,
+          userWithMostFollowers: action.payload,
+        };
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.allUsers = action.payload;
+      })
       .addMatcher(
         isAnyOf(
           toggleFollow.pending,
           fetchUsersByPage.pending,
-          fetchFilteredUsers.pending
+          fetchFilteredUsers.pending,
+          getUserById.pending,
+          getUserWithMostFollowers.pending,
+          getUserWithMostTweets.pending,
+          getAllUsers.pending
         ),
         (state) => {
           state.isLoading = true;
@@ -62,7 +105,11 @@ const usersSlice = createSlice({
         isAnyOf(
           toggleFollow.rejected,
           fetchUsersByPage.rejected,
-          fetchFilteredUsers.rejected
+          fetchFilteredUsers.rejected,
+          getUserById.rejected,
+          getUserWithMostFollowers.rejected,
+          getUserWithMostTweets.rejected,
+          getAllUsers.rejected
         ),
         (state, action) => {
           state.isLoading = false;
