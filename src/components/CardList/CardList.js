@@ -19,7 +19,6 @@ function CardList() {
   const totalUsersCount = useSelector(selectUsersCount);
   const filter = useSelector(selectFilter);
   const isLoading = useSelector(selectIsLoading);
-  console.log(users.length, "/", totalUsersCount);
 
   const limit = window.innerWidth < 768 ? 3 : 6;
 
@@ -37,7 +36,6 @@ function CardList() {
     dispatch(fetchUsersByPage({ page: page + 1, limit }))
       .then(() => {
         setPage(page + 1);
-        console.log("page", page);
       })
       .catch((err) => {
         console.error(err);

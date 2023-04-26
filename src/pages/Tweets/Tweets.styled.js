@@ -3,14 +3,8 @@ import { NavLink } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
 
 export const StyledArrowIcon = styled(IoMdArrowBack)`
-  display: flex;
-  align-items: baseline;
-  justify-content: left;
-  padding: 5px;
   font-size: 25px;
-  background-color: #f1c232;
   color: #5736a3;
-  border-radius: 50%;
 
   :hover {
     color: #2b278c;
@@ -19,8 +13,14 @@ export const StyledArrowIcon = styled(IoMdArrowBack)`
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  text-align: start;
+  display: flex;
+  align-items: baseline;
+  justify-content: left;
+  padding: 5px;
   margin: 0;
+  text-align: start;
+  background-color: #f1c232;
+  border-radius: 50%;
 
   @media screen and (min-width: 1200px) {
     margin-left: 15px;

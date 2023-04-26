@@ -15,14 +15,6 @@ export const Dropdown = () => {
     dispatch(setFilterValue(filter));
   };
 
-  const getLabel = (option) => {
-    return window.innerWidth < 768 ? option.label : `Show ${option.label}`;
-  };
-
-  const getWidth = () => {
-    return window.innerWidth < 768 ? "155px" : "200px";
-  };
-
   return (
     <>
       <CreatableSelect
@@ -31,7 +23,9 @@ export const Dropdown = () => {
         defaultValue={filterOptions[0]}
         defaultChecked={true}
         options={filterOptions}
-        getOptionLabel={getLabel}
+        getOptionLabel={(option) =>
+          window.innerWidth < 768 ? option.label : `Show ${option.label}`
+        }
         getOptionValue={(option) => option.value}
         onChange={(selectedOption) => {
           handleFilterChange(selectedOption);
@@ -43,9 +37,42 @@ export const Dropdown = () => {
         }}
         controlShouldRenderValue={true}
         styles={{
-          control: (baseStyles, state) => ({
+          control: (baseStyles) => ({
             ...baseStyles,
-            width: getWidth(),
+            width: window.innerWidth < 768 ? "155px" : "200px",
+            borderRadius: "25px",
+            backgroundColor: "#fff",
+            border: "2px solid #bcb5d2",
+            "&:hover": {
+              borderColor: "#7458b2",
+            },
+            "&:focus": {
+              borderColor: "#7458b2",
+            },
+            "&:focus-within": {
+              borderColor: "#7458b2",
+              outline: "none",
+            },
+          }),
+          menu: (baseStyles) => ({
+            ...baseStyles,
+            boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
+            borderRadius: "6px",
+          }),
+          option: (baseStyles, state) => ({
+            ...baseStyles,
+            overflow: "hidden",
+            color: state.isSelected ? "#fff" : "#333",
+            backgroundColor: state.isSelected ? "#56a68d" : "#fff",
+            "&:hover": {
+              backgroundColor: state.isSelected ? "#56a68d" : "#8cbfb9",
+              color: "#fff",
+            },
+          }),
+          input: (baseStyles) => ({
+            ...baseStyles,
+            color: "#333",
+            outline: "none",
           }),
         }}
       />

@@ -6,7 +6,6 @@ import Loader from "components/Skeleton";
 
 export const Layout = () => {
   const location = useLocation();
-  console.log(location);
 
   return (
     <Container>

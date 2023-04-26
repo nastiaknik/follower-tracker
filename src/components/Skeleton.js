@@ -19,91 +19,109 @@ const Loader = ({ page }) => {
                 display: "flex",
                 alignItems: "baseline",
                 justifyContent: "left",
-                marginTop: "15px",
-                marginLeft: "15px",
+                marginLeft: window.innerWidth < 768 ? "0" : "15px",
               }}
             />
-            <Skeleton
-              width={77.87}
-              height={27.6}
-              count={1}
-              style={{ margin: "24px auto", textAlign: "center" }}
-            />
-            <Skeleton width={230} height={38} count={1} style={{}} />
+            <BoxTitle>
+              <Skeleton
+                width={77.87}
+                height={27.6}
+                count={1}
+                style={{
+                  textAlign: "center",
+                  display: "block",
+                }}
+              />
+            </BoxTitle>
           </BoxTweets>
+          <Skeleton
+            width={window.innerWidth < 767 ? "155px" : "200px"}
+            height={40}
+            count={1}
+            style={{
+              marginLeft: "auto",
+              display: "block",
+              marginRight: window.innerWidth < 767 ? "20px" : "0",
+            }}
+            borderRadius={20}
+          />
           <BoxCardList>
             <Skeleton
               width={380}
               height={460}
               style={{
-                display: "flex",
-                flexDirection: "column",
-                flexWrap: "wrap",
-                boxSizing: "border-box",
                 borderRadius: "20px",
                 margin: 0,
                 padding: 0,
                 lineHeight: 1,
+                display: window.innerWidth < 768 ? "block" : "flex",
+                flexDirection: "column",
+                flexWrap: "wrap",
               }}
             />
             <Skeleton
               width={380}
               height={460}
               style={{
-                display: "flex",
-                flexDirection: "column",
-                flexWrap: "wrap",
-                boxSizing: "border-box",
                 borderRadius: "20px",
                 margin: 0,
+                padding: 0,
+                lineHeight: 1,
+                display: window.innerWidth < 768 ? "block" : "flex",
+                flexDirection: "column",
+                flexWrap: "wrap",
               }}
             />
             <Skeleton
               width={380}
               height={460}
               style={{
-                display: "flex",
-                flexDirection: "column",
-                flexWrap: "wrap",
-                boxSizing: "border-box",
                 borderRadius: "20px",
                 margin: 0,
+                padding: 0,
+                lineHeight: 1,
+                display: window.innerWidth < 768 ? "block" : "flex",
+                flexDirection: "column",
+                flexWrap: "wrap",
               }}
             />
             <Skeleton
               width={380}
               height={460}
               style={{
-                display: "flex",
-                flexDirection: "column",
-                flexWrap: "wrap",
-                boxSizing: "border-box",
                 borderRadius: "20px",
                 margin: 0,
+                padding: 0,
+                lineHeight: 1,
+                display: window.innerWidth < 768 ? "block" : "flex",
+                flexDirection: "column",
+                flexWrap: "wrap",
               }}
             />
             <Skeleton
               width={380}
               height={460}
               style={{
-                display: "flex",
-                flexDirection: "column",
-                flexWrap: "wrap",
-                boxSizing: "border-box",
                 borderRadius: "20px",
                 margin: 0,
+                padding: 0,
+                lineHeight: 1,
+                display: window.innerWidth < 768 ? "block" : "flex",
+                flexDirection: "column",
+                flexWrap: "wrap",
               }}
             />
             <Skeleton
               width={380}
               height={460}
               style={{
-                display: "flex",
-                flexDirection: "column",
-                flexWrap: "wrap",
-                boxSizing: "border-box",
                 borderRadius: "20px",
                 margin: 0,
+                padding: 0,
+                lineHeight: 1,
+                display: window.innerWidth < 768 ? "block" : "flex",
+                flexDirection: "column",
+                flexWrap: "wrap",
               }}
             />
           </BoxCardList>
@@ -225,10 +243,8 @@ const BoxTweets = ({ children }) => {
         display: "flex",
         flexDirection: "row",
         flexWrap: "nowrap",
-        marginTop: "30px",
-        justifyContent: "space-between",
         alignItems: "center",
-        marginBottom: "16px",
+        margin: window.innerWidth < 1199 ? "20px 20px 0" : "30px 0 10px",
       }}
     >
       {children}
@@ -237,6 +253,29 @@ const BoxTweets = ({ children }) => {
 };
 
 const BoxCardList = ({ children }) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        marginBottom: "8px",
+        marginLeft: "auto",
+        marginRight: "auto",
+        justifyContent: "center",
+        alignItems: "baseline",
+        gap: window.innerWidth > 767 ? "30px" : "8px",
+        listStyle: "none",
+        padding: 0,
+        lineHeight: 1,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+const BoxTitle = ({ children }) => {
   return (
     <div
       style={{
