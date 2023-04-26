@@ -9,8 +9,10 @@ import {
   selectUserWithMostTweets,
   selectUserWithMostFollowers,
   selectAllUsers,
+  selectIsLoading,
 } from "redux/selectors";
 import TweetCard from "components/TweetCard/TweetCard";
+import Loader from "components/Skeleton";
 import { Container, CardList, StyledNavLink } from "./Home.styled";
 
 const Home = () => {
@@ -18,6 +20,7 @@ const Home = () => {
   const users = useSelector(selectAllUsers);
   const mostActiveUser = useSelector(selectUserWithMostTweets);
   const mostPopularUser = useSelector(selectUserWithMostFollowers);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -37,16 +40,29 @@ const Home = () => {
   }, [dispatch, users]);
 
   return (
-    <Container>
-      <h2>Check the most popular and active users: </h2>
+    <>
       {users && (
-        <CardList>
-          {mostPopularUser && <TweetCard user={mostPopularUser} />}
-          {mostActiveUser && <TweetCard user={mostActiveUser} />}
-        </CardList>
+        <Container>
+          <h2
+            style={{
+              fontSize: "24px",
+              textAlign: "center",
+              padding: 0,
+              margin: "30px auto 10px",
+            }}
+          >
+            Check the most popular and active users:{" "}
+          </h2>
+          <CardList>
+            {mostPopularUser && <TweetCard user={mostPopularUser} />}
+            {mostActiveUser && <TweetCard user={mostActiveUser} />}
+          </CardList>
+          <StyledNavLink to="/tweets">Go to tweets</StyledNavLink>
+        </Container>
       )}
-      <StyledNavLink to="/tweets">Go to tweets</StyledNavLink>
-    </Container>
+
+      {isLoading && !users && <Loader page="/" />}
+    </>
   );
 };
 

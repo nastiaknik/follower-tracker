@@ -1,16 +1,62 @@
 import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const Loader = ({ page }) => {
+  const { id } = useParams();
+
   switch (page) {
     case "/":
-      return <div style={{ marginLeft: "32px" }}></div>;
+      return (
+        <>
+          <Skeleton
+            width={462}
+            height={27.6}
+            style={{ margin: "30px auto 30px" }}
+          />
+          <BoxCardList>
+            <Skeleton
+              width={380}
+              height={460}
+              style={{
+                borderRadius: "20px",
+                margin: 0,
+                padding: 0,
+                lineHeight: 1,
+                display: window.innerWidth < 768 ? "block" : "flex",
+                flexDirection: "column",
+                flexWrap: "wrap",
+              }}
+            />
+            <Skeleton
+              width={380}
+              height={460}
+              style={{
+                borderRadius: "20px",
+                margin: 0,
+                padding: 0,
+                lineHeight: 1,
+                display: window.innerWidth < 768 ? "block" : "flex",
+                flexDirection: "column",
+                flexWrap: "wrap",
+              }}
+            />
+          </BoxCardList>
+          <Skeleton
+            count={1}
+            width={268}
+            height={52.4}
+            borderRadius={10.31}
+            style={{ margin: "0 auto 20px" }}
+          />
+        </>
+      );
 
     case "/tweets":
       return (
         <>
-          <BoxTweets>
+          <BoxTweets margin="30px 0 15px">
             <Skeleton
               circle="true"
               width={35}
@@ -217,6 +263,41 @@ const Loader = ({ page }) => {
         </BoxCardList>
       );
 
+    case `/tweets/${id}`:
+      return (
+        <>
+          <Skeleton
+            circle="true"
+            width={35}
+            height={35}
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              justifyContent: "left",
+              marginLeft: window.innerWidth < 768 ? "0" : "15px",
+              marginTop: "30px",
+            }}
+          />
+          <BoxTweets margin="12px 0 0">
+            <Skeleton
+              borderRadius="50%"
+              style={{ width: "128px", height: "128px", marginRight: "10px" }}
+            />
+
+            <BoxInfo>
+              <Skeleton width={168} height={27.6} />
+              <Skeleton width={111} height={23} style={{ margin: "8px 0" }} />
+              <Skeleton width={50} height={23} />
+            </BoxInfo>
+            <BoxInfo>
+              <Skeleton width={145} height={43} style={{ margin: "10px 0" }} />
+              <Skeleton width={185} height={43} style={{ margin: "10px 0" }} />
+            </BoxInfo>
+          </BoxTweets>
+          <Skeleton width={241.3} height={52.4} />
+        </>
+      );
+
     default:
       return (
         <div
@@ -230,13 +311,13 @@ const Loader = ({ page }) => {
             count={1}
             style={{ marginBottom: 15 }}
           />
-          <Skeleton count={1} width={130} height={42} />
+          <Skeleton count={1} width={268} height={52.4} />
         </div>
       );
   }
 };
 
-const BoxTweets = ({ children }) => {
+const BoxTweets = ({ margin, children }) => {
   return (
     <div
       style={{
@@ -244,7 +325,7 @@ const BoxTweets = ({ children }) => {
         flexDirection: "row",
         flexWrap: "nowrap",
         alignItems: "center",
-        margin: window.innerWidth < 1199 ? "20px 20px 0" : "30px 0 10px",
+        margin: window.innerWidth < 1199 ? "20px 20px 0" : margin,
       }}
     >
       {children}
@@ -264,7 +345,7 @@ const BoxCardList = ({ children }) => {
         marginRight: "auto",
         justifyContent: "center",
         alignItems: "baseline",
-        gap: window.innerWidth > 767 ? "30px" : "8px",
+        gap: window.innerWidth > 767 ? "20px" : "8px",
         listStyle: "none",
         padding: 0,
         lineHeight: 1,
@@ -291,6 +372,24 @@ const BoxTitle = ({ children }) => {
         listStyle: "none",
         padding: 0,
         lineHeight: 1,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+const BoxInfo = ({ children }) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "nowrap",
+        flexDirection: "column",
+        justifyContent: "start",
+        alignItems: "start",
+        marginRight: "10px",
+        marginLeft: "10px",
       }}
     >
       {children}

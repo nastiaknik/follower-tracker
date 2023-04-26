@@ -44,7 +44,7 @@ export const Wrapper = styled.div`
   align-items: center;
 
   @media screen and (max-width: 1199px) {
-    margin: 20px 20px 0;
+    margin: 20px 0;
   }
 `;
 

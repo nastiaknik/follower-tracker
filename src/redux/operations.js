@@ -61,7 +61,6 @@ export const getUserById = createAsyncThunk(
   "users/getUserById",
   async (id, { rejectWithValue }) => {
     try {
-      console.log(id);
       const response = await agent.get(`users/${id}`);
       return response.data;
     } catch (error) {

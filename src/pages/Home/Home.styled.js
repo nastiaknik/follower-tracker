@@ -8,6 +8,7 @@ export const CardList = styled.ul`
   margin: 20px auto;
   justify-content: center;
   align-items: center;
+  padding: 0;
 `;
 
 export const StyledNavLink = styled(NavLink)`

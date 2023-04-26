@@ -59,7 +59,6 @@ const usersSlice = createSlice({
         };
       })
       .addCase(getUserById.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.selectedUser = action.payload;
         state.isLoading = false;
       })

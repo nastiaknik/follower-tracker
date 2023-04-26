@@ -1,10 +1,10 @@
 import { useRef, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSeletedUser /* , selectIsLoading */ } from "redux/selectors";
+import { selectSeletedUser } from "redux/selectors";
 import { getUserById, toggleFollow } from "redux/operations";
 import { NumericFormat } from "react-number-format";
-/* import Loader from "components/Skeleton"; */
+import NotFound from "components/NotFound/NotFound";
 import { Button } from "components/Button/Button";
 import {
   ProfileInfo,
@@ -24,10 +24,6 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const user = useSelector(selectSeletedUser);
-  /* const isLoading = useSelector(selectIsLoading); */
-
-  console.log(id);
-  console.log(user);
 
   useEffect(() => {
     dispatch(getUserById(id));
@@ -45,7 +41,6 @@ const UserProfile = () => {
 
   return (
     <>
-      {/* {isLoading && <Loader page={`/user/${id}`} />} */}
       <Wrapper>
         <StyledNavLink to={backLinkLocationRef.current}>
           <StyledArrowIcon />
@@ -95,7 +90,7 @@ const UserProfile = () => {
           ></Button>
         </>
       ) : (
-        <p>Sorry, we didn't find the {user?.name}</p>
+        <NotFound />
       )}
     </>
   );

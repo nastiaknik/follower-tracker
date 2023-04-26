@@ -5,11 +5,6 @@ import { IoMdArrowBack } from "react-icons/io";
 export const StyledArrowIcon = styled(IoMdArrowBack)`
   font-size: 25px;
   color: #5736a3;
-
-  :hover {
-    color: #2b278c;
-    background-color: #e7bb44;
-  }
 `;
 
 export const StyledNavLink = styled(NavLink)`
@@ -21,6 +16,11 @@ export const StyledNavLink = styled(NavLink)`
   text-align: start;
   background-color: #f1c232;
   border-radius: 50%;
+
+  :hover {
+    color: #2b278c;
+    background-color: #e7bb44;
+  }
 
   @media screen and (min-width: 1200px) {
     margin-left: 15px;
