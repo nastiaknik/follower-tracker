@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkfollower_tracker=self.webpackChunkfollower_tracker||[]).push([[266],{1266:function(e,r,t){t.r(r);var l=t(184);r.default=function(){return(0,l.jsx)("div",{style:{height:"100vh",display:"flex",justifyContent:"center",alignItems:"center",fontSize:40,color:"#010101"},children:"Follower Tracker"})}}}]);
-//# sourceMappingURL=266.ae9c4d20.chunk.js.map
