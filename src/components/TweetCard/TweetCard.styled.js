@@ -4,10 +4,8 @@ import backgroundImagex1 from "../../assets/background-image-x1.png";
 import backgroundImagex2 from "../../assets/background-image-x2.png";
 
 export const Card = styled.li`
+  display: block;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
   width: 380px;
   height: 460px;
   padding-top: 178px;
@@ -21,6 +19,16 @@ export const Card = styled.li`
   background-size: 76px 22px, 308px 168px, 100%;
   box-shadow: -2.58px 6.87px 20.62px rgba(0, 0, 0, 0.23);
 
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-basis: calc((100% - 30px) / 2);
+  }
+  @media screen and (min-width: 1200px) {
+    flex-basis: calc((100% - 30px * 2) / 3);
+  }
+
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
@@ -31,7 +39,7 @@ export const Card = styled.li`
   ::before {
     content: "";
     position: absolute;
-    width: 380px;
+    width: 100%;
     height: 8px;
     left: 0px;
     top: 214px;

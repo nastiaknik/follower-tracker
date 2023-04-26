@@ -3,6 +3,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const agent = axios.create({
   baseURL: "https://64459f4f0431e885f0015baa.mockapi.io",
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+  },
 });
 
 export const fetchFilteredUsers = createAsyncThunk(
@@ -12,7 +15,7 @@ export const fetchFilteredUsers = createAsyncThunk(
       const response = await agent.get("/users", {
         signal,
       });
-      switch (filter) {
+      switch (filter.value) {
         case "all":
           return response.data;
         case "followed":

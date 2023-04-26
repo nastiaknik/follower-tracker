@@ -10,12 +10,12 @@ export const selectFollowingUsers = (state) =>
 export const selectNotFollowingUsers = (state) =>
   state.users.items?.filter((user) => !user.isFollowing);
 
-export const selectFilterValue = (state) => state.filters;
+export const selectFilter = (state) => state.filters;
 
 export const selectFilteredUsers = createSelector(
-  [selectUsers, selectFilterValue],
-  (users, filterValue) => {
-    switch (filterValue) {
+  [selectUsers, selectFilter],
+  (users, filter) => {
+    switch (filter.value) {
       case "all":
         return users;
       case "followed":

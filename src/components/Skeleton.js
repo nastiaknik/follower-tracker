@@ -29,7 +29,7 @@ const Loader = ({ page }) => {
               count={1}
               style={{ margin: "24px auto", textAlign: "center" }}
             />
-            <Skeleton width={150} height={38} count={1} style={{}} />
+            <Skeleton width={230} height={38} count={1} style={{}} />
           </BoxTweets>
           <BoxCardList>
             <Skeleton
@@ -228,6 +228,7 @@ const BoxTweets = ({ children }) => {
         marginTop: "30px",
         justifyContent: "space-between",
         alignItems: "center",
+        marginBottom: "16px",
       }}
     >
       {children}
@@ -242,7 +243,6 @@ const BoxCardList = ({ children }) => {
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
-        marginTop: "16px",
         marginBottom: "8px",
         marginLeft: "auto",
         marginRight: "auto",

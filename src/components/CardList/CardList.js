@@ -4,7 +4,7 @@ import { fetchUsersByPage } from "../../redux/operations";
 import {
   selectFilteredUsers,
   selectUsersCount,
-  selectFilterValue,
+  selectFilter,
   selectIsLoading,
 } from "../../redux/selectors";
 import Loader from "components/Skeleton";
@@ -17,7 +17,7 @@ function CardList() {
   const dispatch = useDispatch();
   const users = useSelector(selectFilteredUsers);
   const totalUsersCount = useSelector(selectUsersCount);
-  const filter = useSelector(selectFilterValue);
+  const filter = useSelector(selectFilter);
   const isLoading = useSelector(selectIsLoading);
   console.log(users.length, "/", totalUsersCount);
 
@@ -35,8 +35,9 @@ function CardList() {
 
   const handleLoadMore = () => {
     dispatch(fetchUsersByPage({ page: page + 1, limit }))
-      .then((response) => {
+      .then(() => {
         setPage(page + 1);
+        console.log("page", page);
       })
       .catch((err) => {
         console.error(err);
@@ -51,7 +52,7 @@ function CardList() {
         ))}
       </List>
       {isLoading && <Loader page="/cards" />}
-      {users && totalUsersCount !== users?.length && (
+      {users.length > 0 && totalUsersCount !== users.length && (
         <Button
           text="Load more"
           onClick={handleLoadMore}

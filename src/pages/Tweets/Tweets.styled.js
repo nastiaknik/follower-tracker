@@ -31,7 +31,7 @@ export const Title = styled.h3`
   font-size: 24px;
   text-align: center;
   padding: 0;
-  /*  margin: 0 auto; */
+  margin: 0 auto;
 
   @media screen and (max-width: 768px) {
     font-size: 20px;
@@ -43,8 +43,20 @@ export const Wrapper = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   margin-top: 30px;
-  justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 1199px) {
+    margin: 20px 20px 0;
+  }
+`;
+
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-top: 30px;
+  align-items: center;
+  justify-content: end;
 
   @media screen and (max-width: 1199px) {
     margin: 20px 20px 0;

@@ -1,31 +1,54 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectFilterValue } from "redux/selectors";
 import { setFilterValue } from "redux/filtersSlice";
+import { selectFilter } from "redux/selectors";
 import { filterOptions } from "../redux/contants";
-import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 
 export const Dropdown = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(selectFilterValue);
-  const handleFilterChange = (filter) => dispatch(setFilterValue(filter));
+  const filter = useSelector(selectFilter);
+  const handleFilterChange = (filter) => {
+    if (!filter) {
+      dispatch(setFilterValue(filterOptions[0]));
+      return;
+    }
+    dispatch(setFilterValue(filter));
+  };
 
-  console.log(filter);
+  const getLabel = (option) => {
+    return window.innerWidth < 768 ? option.label : `Show ${option.label}`;
+  };
+
+  const getWidth = () => {
+    return window.innerWidth < 768 ? "155px" : "200px";
+  };
 
   return (
-    <Select
-      defaultValue={filterOptions[0].value}
-      name={filter}
-      value={filter}
-      options={filterOptions}
-      onChange={(selectedOption) => handleFilterChange(selectedOption.value)}
-      placeholder={filter}
-      label={filter}
-      styles={{
-        control: (baseStyles, state) => ({
-          ...baseStyles,
-          width: "150px",
-        }),
-      }}
-    />
+    <>
+      <CreatableSelect
+        id={filter.value}
+        name={filter.label}
+        defaultValue={filterOptions[0]}
+        defaultChecked={true}
+        options={filterOptions}
+        getOptionLabel={getLabel}
+        getOptionValue={(option) => option.value}
+        onChange={(selectedOption) => {
+          handleFilterChange(selectedOption);
+        }}
+        placeholder="Show..."
+        isSearchable={true}
+        clearValue={() => {
+          dispatch(setFilterValue(filterOptions[0]));
+        }}
+        controlShouldRenderValue={true}
+        styles={{
+          control: (baseStyles, state) => ({
+            ...baseStyles,
+            width: getWidth(),
+          }),
+        }}
+      />
+    </>
   );
 };

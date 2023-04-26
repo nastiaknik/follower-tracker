@@ -5,15 +5,16 @@ import {
   StyledNavLink,
   Title,
   Wrapper,
+  InputWrapper,
 } from "./Tweets.styled";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFilteredUsers } from "redux/operations";
-import { selectFilterValue } from "redux/selectors";
+import { selectFilter } from "redux/selectors";
 
 const Tweets = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(selectFilterValue);
+  const filter = useSelector(selectFilter);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -32,8 +33,10 @@ const Tweets = () => {
           <StyledArrowIcon />
         </StyledNavLink>
         <Title>Tweets</Title>
-        <Dropdown />
       </Wrapper>
+      <InputWrapper>
+        <Dropdown />
+      </InputWrapper>
       <CardList /* allFilteredUsers={} */></CardList>{" "}
     </>
   );
