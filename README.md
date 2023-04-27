@@ -35,14 +35,14 @@ The User Profile page displays additional information about a user including the
 
 The Follower Tracker App is built using the following technologies:
 
-**React**: a JavaScript library for building user interfaces
-**Redux**: a predictable state container for JavaScript apps
-**React Router**: a library for routing in React apps
-**Redux Toolkit**: a set of tools and utilities for building Redux apps
-**Axios**: a library for making HTTP requests
-**Styled Components**: a library for styling React components
-**Node.js**: a server-side JavaScript runtime environment that enables developers to build applications
-**mockApi**: a tool that allows developers to create and simulate RESTful APIs
+1. **React**: a JavaScript library for building user interfaces
+2. **Redux**: a predictable state container for JavaScript apps
+3. **React Router**: a library for routing in React apps
+4. **Redux Toolkit**: a set of tools and utilities for building Redux apps
+5. **Axios**: a library for making HTTP requests
+6. **Styled Components**: a library for styling React components
+7. **Node.js**: a server-side JavaScript runtime environment that enables developers to build applications
+8. **mockApi**: a tool that allows developers to create and simulate RESTful APIs
 
 ### Getting Started
 
