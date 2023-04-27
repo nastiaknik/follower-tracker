@@ -43,6 +43,9 @@ The Follower Tracker App is built using the following technologies:
 6. **Styled Components**: a library for styling React components
 7. **Node.js**: a server-side JavaScript runtime environment that enables developers to build applications
 8. **mockApi**: a tool that allows developers to create and simulate RESTful APIs
+9. **NumericFormat**: a library for formatting numbers 
+10. **React Select**: a library for creating dropdown menus in React
+11. **React Loading Skeleton**: a library for creating placeholder loading animations in React
 
 ### Getting Started
 
