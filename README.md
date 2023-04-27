@@ -26,9 +26,9 @@ The User Profile page displays additional information about a user including the
 
 ## Features
 
-    *View* a list of all users and their profiles.
-    *Follow and unfollow* users, and *see real-time updates* of the follower count.
-    *Filter* users by followed and not followed.
+    View a list of all users and their profiles.
+    Follow and unfollow* users, and *see real-time updates* of the follower count.
+    Filter users by followed and not followed.
     View the user with the most followers or the user with the most tweets.
 
 ## Technologies Used
