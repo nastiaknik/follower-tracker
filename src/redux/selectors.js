@@ -38,18 +38,6 @@ export const selectUserWithMostFollowers = (state) =>
 
 export const selectAllUsers = (state) => state.users.allUsers;
 
-/* export const selectFilteredAllUsers = createSelector(
-  [selectUsers, selectFilterValue],
-  (users, filterValue) => {
-    return users.filter(user => {
-      return (
-        user.name.toLowerCase().includes(filterValue.toLowerCase().trim()) ||
-        user.nickname.includes(filterValue.toLowerCase().trim())
-      );
-    });
-  }
-); */
-
 export const selectIsLoading = (state) => state.users.isLoading;
 
 export const selectError = (state) => state.users.error;

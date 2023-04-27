@@ -37,7 +37,7 @@ const Tweets = () => {
       <InputWrapper>
         <Dropdown />
       </InputWrapper>
-      <CardList /* allFilteredUsers={} */></CardList>{" "}
+      <CardList></CardList>
     </>
   );
 };

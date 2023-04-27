@@ -51,11 +51,7 @@ function CardList() {
       </List>
       {isLoading && <Loader page="/cards" />}
       {users.length > 0 && totalUsersCount !== users.length && (
-        <Button
-          text="Load more"
-          onClick={handleLoadMore}
-          disabled={totalUsersCount <= users?.length}
-        />
+        <Button text="Load more" onClick={handleLoadMore} />
       )}
     </Container>
   );

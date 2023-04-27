@@ -21,7 +21,7 @@ function TweetCard({ user }) {
       toggleFollow({
         ...user,
         isFollowing: !user.isFollowing,
-        followers: user.isFollowing ? user.followers - 1 : user.followers + 1,
+        followers: user.followers + (user.isFollowing ? -1 : 1),
       })
     );
   };
