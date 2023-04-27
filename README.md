@@ -6,7 +6,7 @@ The Follower Tracker App is a web application that allows users to **track and m
 
 ### 1. Home Page
 
-The Home page features two cards that show **the most active user and the most popular user**. These cards are designed with a stylish layout that includes a custom background image and a logoGoIT. The card's dimensions are adjustable based on the screen size, ensuring that the design remains responsive and user-friendly on all devices.
+The Home page features two cards that show the most active user and the most popular user. These cards are designed with a stylish layout that includes a custom background image and a logoGoIT. The card's dimensions are adjustable based on the screen size, ensuring that the design remains responsive and user-friendly on all devices.
 The cards' content includes the user's profile picture, username, and a brief overview of their activity or popularity on the platform.
 The most active user card highlights the user who has the most tweets on the platform. The most popular user card highlights the user who has the most followers on the platform, indicating their significant influence and impact within the community.
 
@@ -22,12 +22,12 @@ The Tweets page displays the tweets of users in card format with pagination and 
 
 ### 3. User Profile Page
 
-The User Profile page displays additional information about a user including their **avatar, name, username, country, statistics of their followers and their tweets** and has a Back button that takes you back to the previous page.
+The User Profile page displays additional information about a user including their avatar, name, username, country, statistics of their followers and their tweets and has a Back button that takes you back to the previous page.
 
 ## Features
 
     View a list of all users and their profiles.
-    Follow and unfollow* users, and *see real-time updates* of the follower count.
+    Follow and unfollow users, and see real-time updates of the follower count.
     Filter users by followed and not followed.
     View the user with the most followers or the user with the most tweets.
 
@@ -55,7 +55,7 @@ To run the Follower Tracker App on your local machine, follow these steps:
 
 ### Testing
 
-To run the tests for the Follower Tracker App, run the following command: **npm test**
+To run the tests for the Follower Tracker App, run the following command: npm test
 
 ### Contributing
 
@@ -63,6 +63,6 @@ To contribute to the Follower Tracker App, follow these steps:
 
     1. Fork this repository.
     2. Create a new branch: git checkout -b my-new-feature
-    3. Make your changes and commit them: git commit -m *"Add some feature"*
+    3. Make your changes and commit them: git commit -m "Add some feature"
     4. Push your changes to your fork: git push origin my-new-feature
     5. Create a pull request.
