@@ -7,13 +7,13 @@ import {
   Wrapper,
   InputWrapper,
 } from "./Tweets.styled";
-import { useEffect } from "react";
+/* import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFilteredUsers } from "redux/operations";
-import { selectFilter } from "redux/selectors";
+import { fetchFilteredUsersByPage } from "redux/operations";
+import { selectFilter } from "redux/selectors"; */
 
 const Tweets = () => {
-  const dispatch = useDispatch();
+  /*  const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Tweets = () => {
     );
     return () => controller.abort();
   }, [dispatch, filter]);
-
+ */
   return (
     <>
       <Wrapper>

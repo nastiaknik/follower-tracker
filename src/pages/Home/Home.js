@@ -8,7 +8,7 @@ import {
 import {
   selectUserWithMostTweets,
   selectUserWithMostFollowers,
-  selectAllUsers,
+  selectUsers,
   selectIsLoading,
 } from "redux/selectors";
 import TweetCard from "components/TweetCard/TweetCard";
@@ -17,10 +17,15 @@ import { Container, CardList, StyledNavLink } from "./Home.styled";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const users = useSelector(selectAllUsers);
+  const users = useSelector(selectUsers);
   const mostActiveUser = useSelector(selectUserWithMostTweets);
   const mostPopularUser = useSelector(selectUserWithMostFollowers);
   const isLoading = useSelector(selectIsLoading);
+
+  const active =
+    JSON.parse(localStorage.getItem("mostActive")) || mostActiveUser;
+  const popular =
+    JSON.parse(localStorage.getItem("mostPopular")) || mostPopularUser;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -33,6 +38,34 @@ const Home = () => {
     });
     return () => controller.abort();
   }, [dispatch, mostActiveUser, mostPopularUser]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const savedUsers = JSON.parse(localStorage.getItem("users"));
+
+    if (savedUsers) {
+      dispatch(getUserWithMostFollowers(savedUsers));
+      dispatch(getUserWithMostTweets(savedUsers));
+    } else {
+      dispatch(getAllUsers({ signal: controller.signal })).catch((err) => {
+        console.error(err);
+      });
+      return () => controller.abort();
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (users) {
+      localStorage.setItem("users", JSON.stringify(users));
+    }
+    if (mostActiveUser) {
+      localStorage.setItem("mostActive", JSON.stringify(mostActiveUser));
+    }
+    if (mostPopularUser) {
+      localStorage.setItem("mostPopular", JSON.stringify(mostPopularUser));
+    }
+  }, [users, mostActiveUser, mostPopularUser]);
 
   useEffect(() => {
     dispatch(getUserWithMostFollowers(users));
@@ -54,8 +87,8 @@ const Home = () => {
             Check the most popular and active users:{" "}
           </h2>
           <CardList>
-            {mostPopularUser && <TweetCard user={mostPopularUser} />}
-            {mostActiveUser && <TweetCard user={mostActiveUser} />}
+            {popular && <TweetCard user={popular} />}
+            {active && <TweetCard user={active} />}
           </CardList>
           <StyledNavLink to="/tweets">Go to tweets</StyledNavLink>
         </Container>

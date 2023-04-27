@@ -8,13 +8,14 @@ const agent = axios.create({
   },
 });
 
-export const fetchFilteredUsers = createAsyncThunk(
-  "users/fetchFilteredUsers",
-  async ({ filter, signal }, { rejectWithValue }) => {
+export const fetchFilteredUsersByPage = createAsyncThunk(
+  "users/fetchUsers",
+  async ({ filter, page, limit, signal }, { rejectWithValue }) => {
     try {
       const response = await agent.get("/users", {
-        signal,
+        params: { page, limit, signal },
       });
+
       switch (filter.value) {
         case "all":
           return response.data;
@@ -25,20 +26,6 @@ export const fetchFilteredUsers = createAsyncThunk(
         default:
           return;
       }
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const fetchUsersByPage = createAsyncThunk(
-  "users/fetchUsers",
-  async ({ page, limit }, { rejectWithValue }) => {
-    try {
-      const response = await agent.get("/users", {
-        params: { page, limit },
-      });
-      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }

@@ -2,13 +2,7 @@ import { createSelector } from "@reduxjs/toolkit";
 
 export const selectUsers = (state) => state.users.items;
 
-export const selectUsersCount = (state) => state.users.userCount;
-
-export const selectFollowingUsers = (state) =>
-  state.users.items?.filter((user) => user.isFollowing);
-
-export const selectNotFollowingUsers = (state) =>
-  state.users.items?.filter((user) => !user.isFollowing);
+export const selectUsersCount = (state) => state.users.allUsers.length;
 
 export const selectFilter = (state) => state.filters;
 
@@ -35,8 +29,6 @@ export const selectUserWithMostTweets = (state) =>
 
 export const selectUserWithMostFollowers = (state) =>
   state.users.userWithMostFollowers;
-
-export const selectAllUsers = (state) => state.users.allUsers;
 
 export const selectIsLoading = (state) => state.users.isLoading;
 

@@ -20,7 +20,7 @@ export const Dropdown = () => {
       <CreatableSelect
         id={filter.value}
         name={filter.label}
-        defaultValue={filterOptions[0]}
+        defaultValue={filter}
         defaultChecked={true}
         options={filterOptions}
         getOptionLabel={(option) =>

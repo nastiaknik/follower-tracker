@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUsersByPage } from "../../redux/operations";
+import { fetchFilteredUsersByPage } from "../../redux/operations";
 import {
   selectFilteredUsers,
   selectUsersCount,
   selectFilter,
   selectIsLoading,
 } from "../../redux/selectors";
+import { filterOptions } from "redux/contants";
 import Loader from "components/Skeleton";
 import TweetCard from "../TweetCard/TweetCard";
 import { Button } from "components/Button/Button";
@@ -24,16 +25,19 @@ function CardList() {
 
   useEffect(() => {
     const controller = new AbortController();
-    dispatch(fetchUsersByPage({ page: 1, limit }, controller.signal)).catch(
-      (err) => {
-        console.error(err);
-      }
-    );
+    dispatch(
+      fetchFilteredUsersByPage(
+        { filter: filter || filterOptions[0], page: 1, limit },
+        controller.signal
+      )
+    ).catch((err) => {
+      console.error(err);
+    });
     return () => controller.abort();
   }, [dispatch, filter, limit]);
 
   const handleLoadMore = () => {
-    dispatch(fetchUsersByPage({ page: page + 1, limit }))
+    dispatch(fetchFilteredUsersByPage({ filter, page: page + 1, limit }))
       .then(() => {
         setPage(page + 1);
       })

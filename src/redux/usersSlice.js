@@ -1,7 +1,6 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
-  fetchFilteredUsers,
-  fetchUsersByPage,
+  fetchFilteredUsersByPage,
   toggleFollow,
   getUserById,
   getUserWithMostFollowers,
@@ -11,13 +10,12 @@ import {
 
 const usersInitialState = {
   items: [],
-  isLoading: false,
-  error: null,
-  userCount: 0,
   selectedUser: null,
   userWithMostFollowers: null,
   userWithMostTweets: null,
   allUsers: [],
+  isLoading: false,
+  error: null,
 };
 
 const usersSlice = createSlice({
@@ -25,7 +23,7 @@ const usersSlice = createSlice({
   initialState: usersInitialState,
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUsersByPage.fulfilled, (state, action) => {
+      .addCase(fetchFilteredUsersByPage.fulfilled, (state, action) => {
         const existingUsers = state.items?.map((user) => user.id);
         const users = action.payload.filter(
           (user) => !existingUsers.includes(user.id)
@@ -36,7 +34,6 @@ const usersSlice = createSlice({
             state.items?.length !== 0
               ? [...state.items, ...users]
               : action.payload,
-          userCount: state.userCount,
           isLoading: false,
           error: null,
         };
@@ -49,34 +46,21 @@ const usersSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(fetchFilteredUsers.fulfilled, (state, action) => {
-        return {
-          ...state,
-          items: state.items,
-          userCount: action.payload.length,
-          isLoading: false,
-          error: null,
-        };
-      })
       .addCase(getUserById.fulfilled, (state, action) => {
         state.selectedUser = action.payload;
         state.isLoading = false;
       })
       .addCase(getUserWithMostTweets.fulfilled, (state, action) => {
-        const user = action.payload;
         return {
           ...state,
-          selectedUser: user,
           isLoading: false,
           error: null,
           userWithMostTweets: action.payload,
         };
       })
       .addCase(getUserWithMostFollowers.fulfilled, (state, action) => {
-        const user = action.payload;
         return {
           ...state,
-          selectedUser: user,
           isLoading: false,
           error: null,
           userWithMostFollowers: action.payload,
@@ -89,8 +73,7 @@ const usersSlice = createSlice({
       .addMatcher(
         isAnyOf(
           toggleFollow.pending,
-          fetchUsersByPage.pending,
-          fetchFilteredUsers.pending,
+          fetchFilteredUsersByPage.pending,
           getUserById.pending,
           getUserWithMostFollowers.pending,
           getUserWithMostTweets.pending,
@@ -103,8 +86,7 @@ const usersSlice = createSlice({
       .addMatcher(
         isAnyOf(
           toggleFollow.rejected,
-          fetchUsersByPage.rejected,
-          fetchFilteredUsers.rejected,
+          fetchFilteredUsersByPage.rejected,
           getUserById.rejected,
           getUserWithMostFollowers.rejected,
           getUserWithMostTweets.rejected,
